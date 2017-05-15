@@ -1,0 +1,24 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:        cesi-firewall
+# Required-Start:  $network $remote_fs $syslog
+# Required-Stop:   $network $remote_fs $syslog
+# Default-Start:   2 3 4 5
+# Default-Stop:
+# Short-Description: Start cesi-firewall
+### END INIT INFO
+
+do_start(){
+	sh /root/firewall.sh
+}
+
+do_stop(){
+	sh /root/firewall.clean.sh
+}
+
+case $1 in
+	"start") do_start ;;
+	"stop") do_stop ;;
+	*) echo "Invalid command !!" ;;
+esac
